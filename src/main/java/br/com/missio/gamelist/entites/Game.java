@@ -1,5 +1,6 @@
 package br.com.missio.gamelist.entites;
 
+import br.com.missio.gamelist.dto.GameMinDTO;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -39,6 +40,10 @@ public class Game {
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
     }
+
+    public Game() {
+    }
+
 
     public Long getId() {
         return id;
