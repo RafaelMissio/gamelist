@@ -1,5 +1,6 @@
 package br.com.missio.gamelist.controller;
 
+import br.com.missio.gamelist.dto.GameMinDTO;
 import br.com.missio.gamelist.entites.Game;
 import br.com.missio.gamelist.services.GameServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class GameController {
 
 
     @GetMapping
-    public List<Game> findAll() {
-        List<Game> games = gameServices.findAll();
+    public List<GameMinDTO> findAll() {
+        List<GameMinDTO> games = gameServices.findAll();
         return games;
     }
 }

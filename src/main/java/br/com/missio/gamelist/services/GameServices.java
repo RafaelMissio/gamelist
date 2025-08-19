@@ -1,5 +1,6 @@
 package br.com.missio.gamelist.services;
 
+import br.com.missio.gamelist.dto.GameMinDTO;
 import br.com.missio.gamelist.entites.Game;
 import br.com.missio.gamelist.repository.GameRepository;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,11 @@ public class GameServices {
         this.gameRepository = gameRepository;
     }
 
-    public List<Game> findAll() {
+    public List<GameMinDTO> findAll() {
        List<Game> games = gameRepository.findAll();
-       return games;
+       List<GameMinDTO> gamesDTO = games.stream()
+                .map(GameMinDTO::new).toList();
+       return gamesDTO ;
     }
 
 
