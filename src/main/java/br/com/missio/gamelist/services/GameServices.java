@@ -3,6 +3,7 @@ package br.com.missio.gamelist.services;
 import br.com.missio.gamelist.dto.GameDTO;
 import br.com.missio.gamelist.dto.GameMinDTO;
 import br.com.missio.gamelist.entites.Game;
+import br.com.missio.gamelist.projection.GameMinProjection;
 import br.com.missio.gamelist.repository.GameRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ public class GameServices {
         this.gameRepository = gameRepository;
     }
 
+
     @Transactional(readOnly = true)
     public List<GameMinDTO> findAll() {
        List<Game> games = gameRepository.findAll();
@@ -29,6 +31,12 @@ public class GameServices {
     public GameDTO findById(Long id) {
         Game game = gameRepository.findById(id).orElseThrow(() -> new RuntimeException("Game not found"));
         return new GameDTO(game);
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByGameList(Long listId) {
+        List<GameMinProjection> games = gameRepository.searchByList(listId);
+        return games.stream().map(GameMinDTO::new).toList();
     }
 
 

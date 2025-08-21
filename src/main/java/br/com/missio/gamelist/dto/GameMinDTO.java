@@ -1,6 +1,7 @@
 package br.com.missio.gamelist.dto;
 
 import br.com.missio.gamelist.entites.Game;
+import br.com.missio.gamelist.projection.GameMinProjection;
 
 public class GameMinDTO {
 
@@ -9,28 +10,34 @@ public class GameMinDTO {
     private Integer year;
     private String imgUrl;
     private String shortDescription;
-    private String longDescription;
 
-    public GameMinDTO(Long id, String title, Integer year, String imgUrl, String shortDescription, String longDescription) {
+
+    public GameMinDTO(){
+    }
+
+    public GameMinDTO(Long id, String title, Integer year, String imgUrl, String shortDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.imgUrl = imgUrl;
         this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
-    }
-
-    public GameMinDTO(){
 
     }
 
-    public GameMinDTO(Game game){
-        id = game.getId();
-        title = game.getTitle();
-        year = game.getYear();
-        imgUrl = game.getImgUrl();
-        shortDescription = game.getShortDescription();
-        longDescription = game.getLongDescription();
+    public GameMinDTO(Game entity){
+        id = entity.getId();
+        title = entity.getTitle();
+        year = entity.getYear();
+        imgUrl = entity.getImgUrl();
+        shortDescription = entity.getShortDescription();
+    }
+
+    public GameMinDTO(GameMinProjection projection) {
+        id = projection.getId();
+        title = projection.getTitle();
+        year = projection.getYear();
+        imgUrl = projection.getImgUrl();
+        shortDescription = projection.getShortDescription();
     }
 
     public Long getId() {
@@ -53,7 +60,5 @@ public class GameMinDTO {
         return shortDescription;
     }
 
-    public String getLongDescription() {
-        return longDescription;
-    }
+
 }
