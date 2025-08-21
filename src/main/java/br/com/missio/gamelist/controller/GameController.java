@@ -23,7 +23,8 @@ public class GameController {
 
     @GetMapping
     public List<GameMinDTO> findAll() {
-       return gameServices.findAll();
+        List<GameMinDTO> result = gameServices.findAll();
+       return result;
     }
 
     @GetMapping(value = "/{id}")
