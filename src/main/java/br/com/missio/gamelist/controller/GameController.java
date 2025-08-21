@@ -1,8 +1,10 @@
 package br.com.missio.gamelist.controller;
 
+import br.com.missio.gamelist.dto.GameDTO;
 import br.com.missio.gamelist.dto.GameMinDTO;
 import br.com.missio.gamelist.services.GameServices;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +24,10 @@ public class GameController {
     @GetMapping
     public List<GameMinDTO> findAll() {
        return gameServices.findAll();
+    }
+
+    @GetMapping(value = "/{id}")
+    public GameDTO findById(@PathVariable Long id) {
+        return gameServices.findById(id);
     }
 }
